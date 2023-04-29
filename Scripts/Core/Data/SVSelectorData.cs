@@ -8,7 +8,7 @@ namespace Xenia.ColorPicker.Core.Data
     {
         [Min(1)][SerializeField] internal int textureSize;
         [Range(0.01f, 0.5f)][SerializeField] internal float selectorSize;
-        [Range(0f, 1f)][SerializeField] internal float innerCircleRatio;
+        [Range(0f, 0.95f)][SerializeField] internal float innerCircleSize;
         [SerializeField] internal Color color;
 
         private readonly static SVSelectorData _default;
@@ -19,7 +19,7 @@ namespace Xenia.ColorPicker.Core.Data
             _default = new SVSelectorData();
             _default.textureSize = 256;
             _default.selectorSize = 0.1f;
-            _default.innerCircleRatio = 0.82f;
+            _default.innerCircleSize = 0.82f;
             _default.color = Color.white;
         }
 
@@ -37,7 +37,7 @@ namespace Xenia.ColorPicker.Core.Data
                 return false;
             if (selectorSize != other.selectorSize)
                 return false;
-            if (innerCircleRatio != other.innerCircleRatio)
+            if (innerCircleSize != other.innerCircleSize)
                 return false;
             if (color != other.color)
                 return false;
@@ -50,7 +50,7 @@ namespace Xenia.ColorPicker.Core.Data
             unchecked
             {
                 return textureSize.GetHashCode() * 47 + selectorSize.GetHashCode() * 53
-                + innerCircleRatio.GetHashCode() * 59 + color.GetHashCode() * 61;
+                + innerCircleSize.GetHashCode() * 59 + color.GetHashCode() * 61;
             }
         }
     }

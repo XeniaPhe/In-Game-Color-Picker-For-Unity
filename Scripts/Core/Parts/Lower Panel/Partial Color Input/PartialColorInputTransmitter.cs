@@ -53,7 +53,7 @@ namespace Xenia.ColorPicker.Core.Parts.LowerPanel.PartialColorInput
 
         protected void UpdateColorPicker()
         {
-            colorPicker.AssignColorHSV(componentStrategy.ChangeComponentInTheColor(componentValue, colorPicker.CurrentColorHSV, colorMode));
+            colorPicker.CurrentColorHSV = componentStrategy.ChangeComponentInTheColor(componentValue, colorPicker.CurrentColorHSV, colorMode);
         }
 
         protected Color GetColorIfComponentValueIs(float value)

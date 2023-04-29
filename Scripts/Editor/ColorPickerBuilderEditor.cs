@@ -131,6 +131,8 @@ namespace Xenia.ColorPicker.EditorScripts
 
                 EditorGUILayout.Space();
 
+                DrawSave();
+
                 if (configs is not null && configs.Count != 0)
                 {
                     if (GUILayout.Button("Delete"))
@@ -196,13 +198,10 @@ namespace Xenia.ColorPicker.EditorScripts
                 builder.BuildDefault();
                 SceneView.RepaintAll();
             }
-
-            DrawSave();
         }
 
         private void DrawSave()
         {
-            EditorGUI.indentLevel--;
             EditorGUILayout.BeginHorizontal();
 
             EditorGUILayout.PrefixLabel("Save As");
@@ -210,7 +209,6 @@ namespace Xenia.ColorPicker.EditorScripts
             saveName = EditorGUILayout.TextField(saveName);
 
             EditorGUILayout.EndHorizontal();
-            EditorGUI.indentLevel++;
 
             foreach (var ch in invalidCharacters)
             {

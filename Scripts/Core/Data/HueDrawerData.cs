@@ -8,7 +8,7 @@ namespace Xenia.ColorPicker.Core.Data
     {
         [Min(1)][SerializeField] internal int textureSize;
         [Range(0.5f, 1f)][SerializeField] internal float drawerSize;
-        [Range(0f, 1f)][SerializeField] internal float innerCircleSize;
+        [Range(0f, 0.95f)][SerializeField] internal float innerCircleSize;
         [Range(0f, 360f)][SerializeField] internal float rotation;
         [Range(0f, 1f)][SerializeField] internal float alpha;
         [SerializeField] internal Color outsideColor;

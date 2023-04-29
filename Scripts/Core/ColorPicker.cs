@@ -23,8 +23,7 @@ namespace Xenia.ColorPicker
         [SerializeField] bool serializeColor = true;
 
         [Header("Serialized Settings")]
-        [Tooltip("If Turned On, ColorChanged Event Will Only Be Fired When Color Picker Is Closed;" +
-            "\nIf Turned Off, ColorPreview And ColorChanged Events Will Be Almost Equivalent")]
+        [Tooltip("If Turned On, ColorChanged Event Will Only Be Fired When Color Picker Is Closed;")]
         [SerializeField] bool useColorPreview = true;
         [SerializeField] bool adjustSVSelectorColorBasedOnBrightness = true;
 
@@ -54,6 +53,7 @@ namespace Xenia.ColorPicker
         private SerializableGuid reference;
         private Vector3 position;
         private RectTransform body;
+        private RectTransform canvasRect;
         private bool open;
 
         private HSVColor currentColor = new HSVColor(0, 1, 1);
@@ -65,6 +65,7 @@ namespace Xenia.ColorPicker
             {
                 currentColor = value;
                 OnColorChanged(new ColorChangedEventArgs(currentColor));
+                OnColorChangedExternal();
             }
         }
 
@@ -91,6 +92,7 @@ namespace Xenia.ColorPicker
 
         private void Awake()
         {
+            canvasRect = GetComponent<RectTransform>();
             body = transform.GetChild(0).GetComponent<RectTransform>();
             reference = GetComponent<NonVolatileReference>().Reference;
             currentColor = defaultColor;
@@ -124,7 +126,7 @@ namespace Xenia.ColorPicker
         {
             open = !closedOnStart;
 
-            OnColorChanged(new ColorChangedEventArgs(currentColor), false, false);
+            OnColorChanged(new ColorChangedEventArgs(currentColor));
 
             if (closedOnStart)
             {
@@ -143,7 +145,7 @@ namespace Xenia.ColorPicker
                 Close();
         }
 
-        private void OnColorChanged(ColorChangedEventArgs e, bool changed = true, bool preview = true)
+        private void OnColorChanged(ColorChangedEventArgs e)
         {
             ColorChangedInternal?.Invoke(this, e);
         }
@@ -169,12 +171,6 @@ namespace Xenia.ColorPicker
             Closing?.Invoke();
         }
 
-        internal void AssignColorHSV(HSVColor color)
-        {
-            CurrentColorHSV = color;
-            OnColorChanged(new ColorChangedEventArgs(currentColor));
-        }
-
         internal void AssignColorHSV(float h = -1f, float s = -1f, float v = -1f, float a = -1f)
         {
             currentColor.H = h;
@@ -182,18 +178,35 @@ namespace Xenia.ColorPicker
             currentColor.V = v;
             currentColor.Alpha = a;
             OnColorChanged(new ColorChangedEventArgs(currentColor));
+            OnColorChangedExternal();
         }
 
         public void AssignColor(Color color)
         {
-            CurrentColor = color;
+            currentColor = color;
             OnColorChanged(new ColorChangedEventArgs(currentColor));
         }
 
         public void AssignColor(float r = -1f, float g = -1f, float b = -1f, float a = -1f)
         {
+            Color currentColor = CurrentColor;
+
+            if (r < 0 || r > 1)
+                r = currentColor.r;
+            if (g < 0 || g > 1)
+                g = currentColor.g;
+            if (b < 0 || b > 1)
+                b = currentColor.b;
+            if (a < 0 || a > 1)
+                a = currentColor.a;
+
             currentColor = HSVColor.FromRGB(new Color(r, g, b, a));
             OnColorChanged(new ColorChangedEventArgs(currentColor));
+        }
+
+        public void FireEvents()
+        {
+            OnColorChangedExternal();
         }
 
         public void Open()
@@ -201,6 +214,21 @@ namespace Xenia.ColorPicker
             open = true;
             body.gameObject.SetActive(true);
             OnOpening();
+        }
+
+        public void OpenAtWorldPoint(Vector3 worldPoint, Camera cam = null)
+        {
+            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(cam ?? Camera.main, worldPoint);
+            OpenAtScreenPoint(screenPoint);
+        }
+
+        public void OpenAtScreenPoint(Vector2 screenPoint)
+        {
+            Vector2 anchoredPos;
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPoint, null, out anchoredPos);
+            body.anchoredPosition = anchoredPos;
+            Open();
         }
 
         public void Close()

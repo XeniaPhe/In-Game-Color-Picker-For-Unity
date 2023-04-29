@@ -235,7 +235,7 @@ namespace Xenia.ColorPicker.Core
 
             int textureSize = hueSelectorData.textureSize;
             int selectorRadius = textureSize / 2;
-            int selectorInnerCircleRadius = (int)Mathf.Round(selectorRadius * hueSelectorData.innerCircleRatio);
+            int selectorInnerCircleRadius = (int)Mathf.Round(selectorRadius * hueSelectorData.innerCircleSize);
 
             Color transparent = new Color(1f, 1f, 1f, 0);
 
@@ -259,7 +259,7 @@ namespace Xenia.ColorPicker.Core
 
             int textureSize = svSelectorData.textureSize;
             int selectorRadius = textureSize / 2;
-            int selectorInnerCircleRadius = (int)Mathf.Round(selectorRadius * svSelectorData.innerCircleRatio);
+            int selectorInnerCircleRadius = (int)Mathf.Round(selectorRadius * svSelectorData.innerCircleSize);
 
             Color transparent = new Color(1f, 1f, 1f, 0);
 

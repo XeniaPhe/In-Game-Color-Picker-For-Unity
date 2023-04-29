@@ -166,7 +166,7 @@ namespace Xenia.ColorPicker.EditorScripts
             {
                 hueSelectorData.FindPropertyRelative("textureSize"),
                 hueSelectorData.FindPropertyRelative("selectorSize"),
-                hueSelectorData.FindPropertyRelative("innerCircleRatio"),
+                hueSelectorData.FindPropertyRelative("innerCircleSize"),
                 hueSelectorData.FindPropertyRelative("color")
             };
 
@@ -199,7 +199,7 @@ namespace Xenia.ColorPicker.EditorScripts
             {
                 svSelectorData.FindPropertyRelative("textureSize"),
                 svSelectorData.FindPropertyRelative("selectorSize"),
-                svSelectorData.FindPropertyRelative("innerCircleRatio"),
+                svSelectorData.FindPropertyRelative("innerCircleSize"),
                 svSelectorData.FindPropertyRelative("color")
             };
 
