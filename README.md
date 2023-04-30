@@ -7,15 +7,20 @@
 This is an in-game color picker designed to be used in Unity3D standalone projects.
 
 <p align="center" width="100%">
-    <img src="images/demo1.PNG" width="500" height="387" />
+    <img src="images/demo1.PNG" width="500" height="272" />
+</p>
+
+
+<p align="center" width="100%">
+    <img src="images/demo2.PNG" width="500" height="387" />
 </p>
 
 <p align="center" width="100%">
-    <img src="images/demo2.PNG" width="500" height="410" />
+    <img src="images/demo3.PNG" width="500" height="410" />
 </p>
 
 <p align="center" width="100%">
-    <img src="images/demo3.PNG" width="500" height="400" />
+    <img src="images/demo4.PNG" width="500" height="400" />
 </p>
 
 ## Table Of Contents
@@ -25,6 +30,7 @@ This is an in-game color picker designed to be used in Unity3D standalone projec
 * [Features](#features)
 * [Installation](#installation)
 * [Usage](#usage)
+* [Other Information](#other-information)
 * [Authors](#authors)
 
 ## License
@@ -346,6 +352,13 @@ ColorPicker script has some useful properties and methods besides the events, he
         //Closes the color picker
         public void Close();
       ```
+
+## Other Information
+
+1. Serialization Directory : Application.persistentDataPath + "/ColorPicker"
+2. If you're not using certain parts of the UI you can delete them, however you can not rebuild the color picker after deleting these parts. In that case you have to cretae a new instance
+3. If you change a serialized setting after going into play mode once, then the old setting will be reassinged to the color picker in playmode. In that case you can go to serialization directory and clear everything or change the setting in playmode too.
+
 ## Authors
 
 - [@XeniaPhe](https://github.com/XeniaPhe)
