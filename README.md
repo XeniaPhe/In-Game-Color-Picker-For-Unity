@@ -7,19 +7,19 @@
 This is an in-game color picker designed to be used in Unity3D standalone projects.
 
 <p align="center" width="100%">
-    <img src="images/demo1.PNG" width="500" height="272" />
+    <img src="images/demo.PNG" width="500" height="272" />
 </p>
 
 <p align="center" width="100%">
-    <img src="images/demo2.PNG" width="500" height="387" />
+    <img src="images/demo1.PNG" width="500" height="387" />
 </p>
 
 <p align="center" width="100%">
-    <img src="images/demo3.PNG" width="500" height="410" />
+    <img src="images/demo2.PNG" width="500" height="410" />
 </p>
 
 <p align="center" width="100%">
-    <img src="images/demo4.PNG" width="500" height="400" />
+    <img src="images/demo3.PNG" width="500" height="400" />
 </p>
 
 ## Table Of Contents
