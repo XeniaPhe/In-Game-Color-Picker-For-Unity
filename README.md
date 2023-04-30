@@ -10,7 +10,6 @@ This is an in-game color picker designed to be used in Unity3D standalone projec
     <img src="images/demo1.PNG" width="500" height="272" />
 </p>
 
-
 <p align="center" width="100%">
     <img src="images/demo2.PNG" width="500" height="387" />
 </p>
