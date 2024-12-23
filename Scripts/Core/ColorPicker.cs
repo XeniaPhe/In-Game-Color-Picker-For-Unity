@@ -56,6 +56,8 @@ namespace Xenia.ColorPicker
         private RectTransform canvasRect;
         private bool open;
 
+        public bool Isopen => open;
+
         private HSVColor currentColor = new HSVColor(0, 1, 1);
 
         internal HSVColor CurrentColorHSV
